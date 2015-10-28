@@ -43,3 +43,9 @@ group :development, :test do
   gem 'spring'
 end
 
+group :test do
+  # Install rspec and FactoryGirl/Faker for testing
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'faker'
+end
