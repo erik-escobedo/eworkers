@@ -11,11 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028184830) do
+ActiveRecord::Schema.define(version: 20151029012224) do
 
   create_table "skills", force: :cascade do |t|
     t.string "name"
   end
+
+  create_table "skills_workers", id: false, force: :cascade do |t|
+    t.integer "worker_id"
+    t.integer "skill_id"
+  end
+
+  add_index "skills_workers", ["skill_id"], name: "index_skills_workers_on_skill_id"
+  add_index "skills_workers", ["worker_id", "skill_id"], name: "index_skills_workers_on_worker_id_and_skill_id", unique: true
+  add_index "skills_workers", ["worker_id"], name: "index_skills_workers_on_worker_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
