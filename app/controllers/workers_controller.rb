@@ -14,7 +14,9 @@ class WorkersController < Devise::RegistrationsController
   end
 
   def sign_up_params
-    params.require(:worker).permit(:email, :password, :password_confirmation,
-                                   worker_attributes: [:first_name, :last_name])
+    params.require(:worker).permit(
+      :email, :password, :password_confirmation,
+      worker_attributes: [:first_name, :last_name, skill_ids: []]
+    )
   end
 end

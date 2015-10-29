@@ -1,0 +1,27 @@
+form {
+  ol {
+    li {
+      list-style: none;
+
+      .label {
+        color: #333;
+        display: block;
+        font-size: 18px;
+        text-align: left;
+        padding-left: 0;
+      }
+    }
+  }
+
+  #worker_worker_attributes_skills_input {
+    ol {
+      height: 250px;
+      overflow: auto;
+
+      li {
+        display: inline-block;
+        width: 30%;
+      }
+    }
+  }
+}
