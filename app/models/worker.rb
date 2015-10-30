@@ -9,6 +9,12 @@ class Worker < ActiveRecord::Base
   validates :last_name, presence: true
   validate :at_least_one_skill
 
+  def self.with_skills(ids)
+    joins('INNER JOIN skills_workers ON skills_workers.worker_id = workers.id').
+      where('skills_workers.skill_id IN (?)', ids).
+      group('workers.id').having('COUNT() = ?', ids.count)
+  end
+
   private
   def at_least_one_skill
     if skills.empty?
