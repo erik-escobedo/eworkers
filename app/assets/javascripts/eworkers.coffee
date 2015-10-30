@@ -1,2 +1,1 @@
-do ->
-  angular.module('eworkers', [])
+angular.module('eworkers', [])

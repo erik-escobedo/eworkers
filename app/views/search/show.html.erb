@@ -1,30 +1,33 @@
-<div class="col-md-offset-1 col-md-10 box search">
+<div class="col-md-offset-1 col-md-10 box search"
+  ng-controller="FilterController as filter"
+  ng-init="filter.loadSkills()">
+
   <h3>Filter Skills:</h3>
-  <input type="text" class="form-control"/>
+  <input type="text" class="form-control" ng-model="filter.searchTerm" />
 
   <ul class="skills">
-    <% Skill.all.each do |skill| %>
-      <li>
-        <label>
-          <input type="checkbox" />
-          <%= skill.name %>
-        </label>
-      </li>
-    <% end %>
+    <li ng-repeat="skill in filter.filteredSkills()">
+      <label>
+        <input type="checkbox" ng-model="skill.selected"
+          ng-change="filter.updateSearch()" />
+        {{skill.name}}
+      </label>
+    </li>
   </ul>
 </div>
 
-<div class="col-md-offset-1 col-md-4 search results">
+<div class="col-md-offset-1 col-md-4 search results"
+  ng-controller="ResultsController as ctrl"
+  ng-init="ctrl.loadWorkers()">
+
   <ul class="workers">
-    <% (Worker.all * 10).each do |worker| %>
-      <li class="box">
-        <p>
-          <img src="/missing-profile-photo.png">
-          <strong><%= worker.first_name %></strong>
-        </p>
-        <span><%= worker.skills.map(&:name).join(', ') %></span>
-      </li>
-    <% end %>
+    <li class="box" ng-repeat="worker in ctrl.workers.results">
+      <p>
+        <img src="/missing-profile-photo.png">
+        <strong>{{ctrl.fullName(worker)}}</strong>
+      </p>
+      <span>{{ctrl.skillsText(worker)}}
+    </li>
   </ul>
 
   <ul class="pagination">

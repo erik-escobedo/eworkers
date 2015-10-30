@@ -9,5 +9,9 @@ angular.module('eworkers').service 'Skills', ['$http', ($http) ->
     }).success (skills) =>
       @results = skills
 
+  @getSkills = (ids) =>
+    @results.filter (skill) ->
+      ids.indexOf(skill.id) > -1
+
   return @
 ]
