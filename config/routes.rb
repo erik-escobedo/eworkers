@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root 'search#show'
 
   namespace :api do
+    resources :workers, only: :index
     resources :skills, only: :index
   end
   # The priority is based upon order of creation: first created -> highest priority.

@@ -15,6 +15,10 @@ class Worker < ActiveRecord::Base
       group('workers.id').having('COUNT() = ?', ids.count)
   end
 
+  def as_json(options = {})
+    super.merge(skills: skills.map(&:id))
+  end
+
   private
   def at_least_one_skill
     if skills.empty?
