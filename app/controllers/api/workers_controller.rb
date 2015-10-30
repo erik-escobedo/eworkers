@@ -2,14 +2,14 @@ class Api::WorkersController < ApplicationController
   respond_to :json
 
   def index
-    @workers = Worker.includes(:skills)
+    @workers = Worker.all
 
     if params[:skills].present?
       @workers = @workers.with_skills(params[:skills])
     end
 
     render json: {
-      workers: @workers.limit(per_page).offset(per_page * page),
+      workers: @workers.includes(:skills).limit(per_page).offset(per_page * page),
       total: @workers.length
     }
   end
