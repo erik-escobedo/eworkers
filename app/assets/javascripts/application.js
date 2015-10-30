@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require angular.min
+//= require eworkers
 //= require_tree .
