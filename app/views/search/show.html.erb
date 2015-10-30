@@ -1,0 +1,42 @@
+<div class="col-md-offset-1 col-md-10 box search">
+  <h3>Filter Skills:</h3>
+  <input type="text" class="form-control"/>
+
+  <ul class="skills">
+    <% Skill.all.each do |skill| %>
+      <li>
+        <label>
+          <input type="checkbox" />
+          <%= skill.name %>
+        </label>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="col-md-offset-1 col-md-4 search results">
+  <ul class="workers">
+    <% (Worker.all * 10).each do |worker| %>
+      <li class="box">
+        <p>
+          <img src="/missing-profile-photo.png">
+          <strong><%= worker.first_name %></strong>
+        </p>
+        <span><%= worker.skills.map(&:name).join(', ') %></span>
+      </li>
+    <% end %>
+  </ul>
+
+  <ul class="pagination">
+    <li class="box">First</li>
+    <% 5.times do |page| %>
+      <li class="box"><%= page %></li>
+    <% end %>
+    <li class="box">Last</li>
+  </ul>
+</div>
+
+<div class="col-md-6 box">
+  <div id="map">
+  </div>
+</div>
