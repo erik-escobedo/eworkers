@@ -8,6 +8,18 @@ class Api::WorkersController < ApplicationController
       @workers = @workers.with_skills(params[:skills])
     end
 
-    respond_with @workers.limit(5)
+    render json: {
+      workers: @workers.limit(per_page).offset(per_page * page),
+      total: @workers.length
+    }
+  end
+
+  private
+  def page
+    (params[:page] || 0).to_i
+  end
+
+  def per_page
+    (params[:per_page] || 5).to_i
   end
 end
