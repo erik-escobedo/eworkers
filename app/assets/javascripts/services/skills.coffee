@@ -13,5 +13,11 @@ angular.module('eworkers').service 'Skills', ['$http', ($http) ->
     @results.filter (skill) ->
       ids.indexOf(skill.id) > -1
 
+  @selected = =>
+     @results.filter((skill) ->
+       skill.selected
+     ).map((skill) -> skill.id)
+
+
   return @
 ]

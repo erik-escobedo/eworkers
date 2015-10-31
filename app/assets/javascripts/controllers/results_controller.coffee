@@ -1,6 +1,9 @@
-angular.module('eworkers').
-  controller 'ResultsController', ['Workers', 'Skills', (Workers, Skills) ->
+angular.module('eworkers').controller 'ResultsController', [
+  'Workers', 'Skills', 'Paginator',
+  (Workers, Skills, Paginator) ->
+
     @workers = Workers
+    @paginator = Paginator
 
     @loadWorkers = -> Workers.search()
 
@@ -11,6 +14,13 @@ angular.module('eworkers').
       Skills.getSkills(worker.skills).map((skill) ->
         skill.name
       ).join(', ')
+
+    @showPage = (page) =>
+      Paginator.currentPage = page
+
+      Workers.search
+        'skills[]': Skills.selected()
+        page: Paginator.currentPage
 
     return @
   ]

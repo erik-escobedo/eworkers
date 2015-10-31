@@ -1,5 +1,6 @@
-angular.module('eworkers').
-  controller 'FilterController', ['$scope', 'Skills', 'Workers', ($scope, Skills, Workers) ->
+angular.module('eworkers').controller 'FilterController', [
+  '$scope', 'Skills', 'Workers', 'Paginator',
+  ($scope, Skills, Workers, Paginator) ->
 
     @skills = Skills
 
@@ -13,10 +14,9 @@ angular.module('eworkers').
         Skills.results
 
     @updateSearch = =>
-      selectedSkills = Skills.results.filter (skill) -> skill.selected
-
+      Paginator.currentPage = 0
       Workers.search
-        'skills[]': selectedSkills.map (skill) -> skill.id
+        'skills[]': Skills.selected()
 
     return @
   ]

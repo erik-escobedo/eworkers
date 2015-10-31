@@ -30,13 +30,24 @@
     </li>
   </ul>
 
-  <ul class="pagination">
-    <li class="box">First</li>
-    <% 5.times do |page| %>
-      <li class="box"><%= page %></li>
-    <% end %>
-    <li class="box">Last</li>
-  </ul>
+  <nav>
+    <ul class="pagination">
+      <li>
+        <a href ng-click="ctrl.showPage(0)">
+          <span aria-hidden="true">First</span>
+        </a>
+      </li>
+      <li ng-repeat="page in ctrl.paginator.pages()"
+        ng-class="{ active: ctrl.paginator.currentPage == page }">
+        <a href ng-click="ctrl.showPage(page)">{{page + 1}}</a>
+      </li>
+      <li>
+        <a href ng-click=ctrl.showPage(ctrl.paginator.lastPage) == >
+          <span aria-hidden="true">Last</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </div>
 
 <div class="col-md-6 box">
