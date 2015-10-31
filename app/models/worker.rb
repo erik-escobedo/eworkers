@@ -21,7 +21,7 @@ class Worker < ActiveRecord::Base
   def self.with_skills(ids)
     joins('INNER JOIN skills_workers ON skills_workers.worker_id = workers.id').
       where('skills_workers.skill_id IN (?)', ids).
-      group('workers.id').having('COUNT() = ?', ids.count)
+      group('workers.id').having('COUNT(workers.id) = ?', ids.count)
   end
 
   def as_json(options = {})
