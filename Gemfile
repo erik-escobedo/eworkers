@@ -29,6 +29,10 @@ gem 'devise'
 # Use formtastic for easier forms
 gem 'formtastic', '~> 3.0'
 
+# File upload support with Amazon S3 support
+gem 'paperclip', '~> 4.3'
+gem 'aws-sdk', '< 2.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

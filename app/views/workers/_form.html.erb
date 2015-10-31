@@ -9,6 +9,7 @@
     <%= f.fields_for :worker do |w| %>
       <%= w.input :first_name %>
       <%= w.input :last_name %>
+      <%= w.input :avatar %>
       <%= w.input :skills, as: :check_boxes %>
     <% end %>
   <% end %>

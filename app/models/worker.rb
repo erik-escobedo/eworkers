@@ -9,6 +9,15 @@ class Worker < ActiveRecord::Base
   validates :last_name, presence: true
   validate :at_least_one_skill
 
+  has_attached_file :avatar, styles: {
+    thumb: '45x45!',
+    profile: '180x180!'
+  }
+  validates_attachment_content_type :avatar, {
+    content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
+  }
+
+
   def self.with_skills(ids)
     joins('INNER JOIN skills_workers ON skills_workers.worker_id = workers.id').
       where('skills_workers.skill_id IN (?)', ids).
@@ -16,7 +25,13 @@ class Worker < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    super.merge(skills: skills.map(&:id))
+    super.merge({
+      skills: skills.map(&:id),
+      avatar: {
+        profile: avatar.url(:profile),
+        thumb:   avatar.url(:thumb),
+      }
+    })
   end
 
   private

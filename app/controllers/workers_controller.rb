@@ -4,6 +4,10 @@ class WorkersController < Devise::RegistrationsController
     super { |user| user.build_worker }
   end
 
+  def edit
+    render 'workers/edit'
+  end
+
   # Override this so it creates an User with an empty Worker account
   def resource_class
     User
@@ -16,7 +20,7 @@ class WorkersController < Devise::RegistrationsController
   def sign_up_params
     params.require(:worker).permit(
       :email, :password, :password_confirmation,
-      worker_attributes: [:first_name, :last_name, skill_ids: []]
+      worker_attributes: [:first_name, :last_name, :avatar, skill_ids: []]
     )
   end
 end
