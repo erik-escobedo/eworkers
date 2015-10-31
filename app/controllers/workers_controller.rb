@@ -23,4 +23,15 @@ class WorkersController < Devise::RegistrationsController
       worker_attributes: [:first_name, :last_name, :avatar, skill_ids: []]
     )
   end
+
+  def account_update_params
+    params.require(:worker).permit(worker_attributes: [
+      :first_name, :last_name, :avatar, skill_ids: []
+    ])[:worker_attributes]
+  end
+
+  protected
+  def update_resource(resource, params)
+    resource.worker.update(params)
+  end
 end

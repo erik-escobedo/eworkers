@@ -3,8 +3,10 @@
 
   <%= f.inputs do %>
     <%= f.input :email %>
-    <%= f.input :password %>
-    <%= f.input :password_confirmation %>
+      <% if worker.new_record? %>
+      <%= f.input :password %>
+      <%= f.input :password_confirmation %>
+    <% end %>
 
     <%= f.fields_for :worker do |w| %>
       <%= w.input :first_name %>
@@ -15,6 +17,10 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <% if worker.new_record? %>
+      <%= f.submit "Sign up" %>
+    <% else %>
+      <%= f.submit "Update" %>
+    <% end %>
   </div>
 <% end %>
