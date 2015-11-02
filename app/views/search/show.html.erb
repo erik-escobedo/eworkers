@@ -2,6 +2,18 @@
   ng-controller="FilterController as filter"
   ng-init="filter.loadSkills()">
 
+  <div class="pull-right">
+    <% if current_user %>
+      <%= link_to 'My account', edit_worker_registration_path %>
+      |
+      <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to 'Sign up as a Worker', new_worker_registration_path %>
+      |
+      <%= link_to 'Sign in', new_user_session_path %>
+    <% end %>
+  </div>
+
   <h3>Filter Skills:</h3>
   <input type="text" class="form-control" ng-model="filter.searchTerm" />
 
