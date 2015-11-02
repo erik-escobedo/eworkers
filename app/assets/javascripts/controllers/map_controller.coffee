@@ -5,8 +5,38 @@ angular.module('eworkers').controller 'MapController', [
     waitForGoogleMaps.then =>
       @map = new google.maps.Map($element[0],
         center:
-          lat: -34.397
-          lng: 150.644
+          lat: 52
+          lng: 5.5
         zoom: 8
       )
+
+      @markers = []
+
+    Workers.onChange (workers) =>
+      waitForGoogleMaps.then =>
+        deleteMarkers()
+
+        bounds = new google.maps.LatLngBounds
+
+        workers.forEach (worker) =>
+          position = new google.maps.LatLng
+            lat: worker.latitude
+            lng: worker.longitude
+
+          marker = new google.maps.Marker
+            map: @map
+            position: position
+
+          @markers.push marker
+
+          bounds.extend position
+
+        @map.fitBounds bounds
+        if @map.getZoom() > 17
+          @map.setZoom 17
+
+
+    deleteMarkers = =>
+      @markers.forEach (marker) =>
+        marker.setMap null
   ]
