@@ -1,6 +1,6 @@
 angular.module('eworkers').controller 'FilterController', [
-  '$scope', 'Skills', 'Workers', 'Paginator',
-  ($scope, Skills, Workers, Paginator) ->
+  'Skills', 'Workers', 'Paginator',
+  (Skills, Workers, Paginator) ->
 
     @skills = Skills
 
