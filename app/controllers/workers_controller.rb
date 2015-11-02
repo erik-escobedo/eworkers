@@ -20,13 +20,17 @@ class WorkersController < Devise::RegistrationsController
   def sign_up_params
     params.require(:worker).permit(
       :email, :password, :password_confirmation,
-      worker_attributes: [:first_name, :last_name, :avatar, skill_ids: []]
+      worker_attributes: [
+        :first_name, :last_name, :avatar, :phone_number,
+        :latitude, :longitude, skill_ids: []
+      ]
     )
   end
 
   def account_update_params
     params.require(:worker).permit(worker_attributes: [
-      :first_name, :last_name, :avatar, skill_ids: []
+      :first_name, :last_name, :avatar, :phone_number,
+      :latitude, :longitude, skill_ids: []
     ])[:worker_attributes]
   end
 
