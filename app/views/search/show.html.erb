@@ -66,3 +66,14 @@
   <div id="map">
   </div>
 </div>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJT0VMVtiZ8xBXOab4Ka4iZHtX_Fx75vQ&callback=initMap">
+</script>
+
+<script type="text/javascript">
+// This converts initMap callback into a beautiful Promise object
+window.waitForGoogleMaps = new Promise(function(resolve) {
+    window.initMap = resolve;
+});
+</script>
