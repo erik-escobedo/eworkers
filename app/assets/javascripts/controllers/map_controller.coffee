@@ -18,7 +18,7 @@ angular.module('eworkers').controller 'MapController', [
 
         bounds = new google.maps.LatLngBounds
 
-        workers.forEach (worker) =>
+        workers.forEach (worker, index) =>
           position = new google.maps.LatLng
             lat: worker.latitude
             lng: worker.longitude
@@ -30,6 +30,12 @@ angular.module('eworkers').controller 'MapController', [
           @markers.push marker
 
           bounds.extend position
+
+          $li = $('.results li').eq(index)
+          $li.on 'mouseenter', ->
+            marker.setAnimation google.maps.Animation.BOUNCE
+          $li.on 'mouseleave', ->
+            marker.setAnimation null
 
         @map.fitBounds bounds
         if @map.getZoom() > 17
