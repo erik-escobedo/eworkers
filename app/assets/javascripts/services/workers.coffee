@@ -10,6 +10,16 @@ angular.module('eworkers').service 'Workers', ['$http', ($http) ->
     }).success (data) =>
       @results = data.workers
       @total   = data.total
+      notifyObservers()
+
+  # Observer Pattern
+  observers = []
+  @onChange = (callback) =>
+    observers.push callback
+
+  notifyObservers = =>
+    observers.forEach (callback) =>
+      callback(@results)
 
   return @
 ]
