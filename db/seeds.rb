@@ -18,7 +18,9 @@ end
     worker_attributes: {
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
-      skills: Skill.all.sample(rand(10).succ)
+      skills: Skill.all.sample(rand(10).succ),
+      latitude: Faker::Number.decimal(2, 7).to_f % 2 + 51,
+      longitude: Faker::Number.decimal(2, 7).to_f % 3 + 4
     }
   })
 end
