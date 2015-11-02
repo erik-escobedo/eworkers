@@ -1,0 +1,35 @@
+<div class="col-md-offset-1 col-md-10 box">
+  <%= image_tag @worker.avatar.url(:profile) %>
+
+  <div id="form-map"></div>
+  <h2><%= @worker.full_name %></h2>
+  <strong><%= @worker.skills_set %></strong>
+  <div class="info">
+    <%= mail_to(@worker.user.email) %>
+    <p><%= @worker.phone_number %></p>
+  </div>
+</div>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJT0VMVtiZ8xBXOab4Ka4iZHtX_Fx75vQ&callback=initMap">
+</script>
+
+<script type="text/javascript">
+window.initMap = function() {
+    var position = new google.maps.LatLng({
+        lat: <%= @worker.latitude || 52 %>,
+        lng: <%= @worker.longitude || 5.5 %>
+    });
+
+    var map = new google.maps.Map(document.getElementById('form-map'), {
+        center: position,
+        zoom: 8,
+        streetViewControl: false
+    });
+
+    var marker = new google.maps.Marker({
+        map: map,
+        position: position
+    });
+};
+</script>

@@ -34,11 +34,13 @@
 
   <ul class="workers">
     <li class="box" ng-repeat="worker in ctrl.workers.results">
-      <p>
-      <img ng-src="{{worker.avatar.thumb}}">
-        <strong>{{ctrl.fullName(worker)}}</strong>
-      </p>
-      <span>{{ctrl.skillsText(worker)}}
+      <a ng-href="/workers/{{worker.id}}" >
+        <p>
+        <img ng-src="{{worker.avatar.thumb}}">
+          <strong>{{ctrl.fullName(worker)}}</strong>
+        </p>
+        <span>{{ctrl.skillsText(worker)}}
+      </a>
     </li>
   </ul>
 

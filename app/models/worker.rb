@@ -34,6 +34,14 @@ class Worker < ActiveRecord::Base
     })
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def skills_set
+    skills.map(&:name).join(', ')
+  end
+
   private
   def at_least_one_skill
     if skills.empty?
