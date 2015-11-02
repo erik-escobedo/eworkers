@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151102060847) do
+ActiveRecord::Schema.define(version: 20151102154432) do
 
   create_table "skills", force: :cascade do |t|
     t.string "name"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20151102060847) do
     t.datetime "avatar_updated_at"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "phone_number"
   end
 
   add_index "workers", ["latitude"], name: "index_workers_on_latitude"
